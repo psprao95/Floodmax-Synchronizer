@@ -11,7 +11,7 @@ public class Message implements Delayed{
 	private int sender;
 	private int senderParent;
 	private LocalDateTime deliveryTime;
-	private LocalDateTime deliveryRound;
+	
 	private MessageType messageType;
 	
 	
@@ -78,12 +78,12 @@ public class Message implements Delayed{
 	
 	@Override
 	  public int compareTo(Delayed t) {
-		long diff=this.getDelay(TimeUnit.NANOSECONDS)-t.getDelay(TimeUnit.NANOSECONDS);
-		if (diff<1) {
+		 long result = this.getDelay(TimeUnit.NANOSECONDS) - t.getDelay(TimeUnit.NANOSECONDS);
+		    /*if (result < 0) {
 		      return -1;
-		    } else if (diff > 0) {
+		    } else if (result > 0) {
 		      return 1;
-		    }
+		    }*/
 		    return 0;
 	    
 	  }

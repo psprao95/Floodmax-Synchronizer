@@ -31,7 +31,7 @@ public class Channel {
 	}
 	
 	
-	public ArrayList<Message> getMessages()
+	public ArrayList<Message> getMessage()
 	{
 		ArrayList<Message> result=new ArrayList<Message>();
 		try

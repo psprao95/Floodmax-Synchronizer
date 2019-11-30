@@ -11,7 +11,7 @@ public class LeaderElection {
        
        
       Scanner scanner = new Scanner(new File("sample-input.dat"));
-      //Scanner scanner=new Scanner(new File("connectivity.txt"));
+     
 
         int n = scanner.nextInt();
         System.out.println("Number of processes: " + n);
@@ -56,23 +56,38 @@ public class LeaderElection {
         while (true) {
             /* check if any thread is alive */
             boolean flag = false;
-            for (Thread t: threads) {
+            /*for (Thread t: threads) {
                 if (t.isAlive()) {
                     flag = true;
                     break;
                 }
+            }*/
+            
+            for(Runnable p:processes)
+            {
+            	Process process=(Process)p;
+            	if(!process.getIsDone())
+            	{
+            		flag=true;
+            	}
             }
             
            
             /* no thread alive, exit */
             if (!flag) {
-                System.out.println("Execution finished. Leader elected");
+               
+                for(Runnable p:processes)
+                {
+                	Process process=(Process)p;
+                	process.setIsTerminated(true);
+                }
                 break;
             }
 
            
            
         }
+        System.out.println("Execution finished. Leader elected");
         System.out.println("Total number of messages: "+Process.getTotalMessages());
 
     }
